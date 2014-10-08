@@ -13,27 +13,31 @@ try:
     num = str(args[2])
     print "yay this works"
 except:
-    question = "Who is the president of the United States?"
+    question = "Who is the president of the United States today?"
 '''
 
-question = "Who is the president of the United States?"
+question = "Who played Spiderman?"
 
 g =  google.search(question, num = 10, start = 0, stop = 10)
-utils = [x for x in g]
+utils = [w for w in g]
 print utils
 
+d = {}
 for x in utils:
     #run beautiful soup to find names
     html_doc = google.get_page(x)
     soup = BeautifulSoup(html_doc)
-    y =soup.get_text()
-    print y
+    y = soup.get_text()
+    names = findname(y)
+    for k in names.keys():
+        if k not in d.keys():
+            d[k] = names[k]
+        else:
+            d[k] = d[k] + names[k]
     #find highest number of names
     #return addition of that 
-    break
 
-html_doc = "<html> <h1>Tester</h1> </html>"
-
+print d
 
 
 '''
