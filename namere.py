@@ -1,7 +1,6 @@
-#Victor and Lise's name search
 #Returns dictionary of names based on a file with common first names
 #There are some glitches as some of the listed first names may not be a name of a person in context
-#
+
 import re
 
 def opentestfile(fname):
@@ -21,19 +20,8 @@ def lastname(string):
 
 names= opentestfile("names.csv");
 names= names.split()
-#other files from the class
-fname = "Test.txt" #chris_fish
-#slight errors with oddly formatted txt
-fname = "sample.txt" #Ling_BrianG
-####################
-fname = "testfile.txt"
-fname="JackWinters.txt"
 
-x = opentestfile(fname)
-#test string (not a complete sentence....)
-#x = "\"Zane said New York married Alaska and had a child country named Indonesia whose child was Australia... but Johnny Aaron Deep's was loved by Emily J. Jenkino and Mary's cat but not Jane Terrance but he is also loved by James! "
-#print x
-def findname():
+def findname(x):
     #matches all capitalized letters
     matches = re.findall("[A-Z][a-z]+",x)
 
@@ -114,9 +102,4 @@ def dictmatches(L,D):
     
 
 
-#in dictionary form
-print findname()
-
-#prints names as list
-#print findname().keys()
 
