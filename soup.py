@@ -3,19 +3,6 @@ from bs4 import BeautifulSoup
 import sys
 from namere import findname
 
-htmltester = "Lisa Zhang likes her food hot, but hates food cooked by Bob."
-
-'''
-args = sys.argv
-
-try:
-    question = str(args[1])
-    num = str(args[2])
-    print "yay this works"
-except:
-    question = "Who played Spiderman?"
-'''
-
 question = "Who is the president of the United States today?"
 
 g =  google.search(question, num = 10, start = 0, stop = 10, pause=3.0)
@@ -42,12 +29,13 @@ except urllib2.HTTPError, error:
 
 print d
 
+
+
 '''
+Soup functions/google functions
 print soup.prettify()
-print
 
 print soup.get_text()
-
 
 g.googlesearch("Question", num = 10, start =0, stop = 10)
 utils [x for x in g]
