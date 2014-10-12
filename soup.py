@@ -8,11 +8,12 @@ import urllib2
 
 question = "Who is the president of the United States today?"
 
-def search(searchtype):
+def search(question):
     g =  google.search(question, num = 10, start = 0, stop = 10, pause=3.0)
     utils = [w for w in g]
 
     d = {}
+    searchtype = question.split(" ")[0]
     if searchtype == "Who" or searchtype == "":
         name = True
     else:
@@ -26,14 +27,15 @@ def search(searchtype):
             soup = BeautifulSoup(html_doc)
             y = soup.get_text()
             if name:
-                #names = check_names(get_potential_names(y))
-                names = findname(y)
+                names = check_names(get_potential_names(y))
+                #names = findname(y)
                 for k in names.keys():
                     if k not in d.keys():
                         d[k] = names[k]
                     else:
                         d[k] = d[k] + names[k]
                     #find highest number of names
+                   # dhigh=findhigh(d);
                     #return addition of that 
                 count +=1
         except Exception, error:
@@ -41,8 +43,35 @@ def search(searchtype):
             
     return d
            
+def findhigh(d,numb = None):
+    print "Finding highest results"
+    if numb == None:
+        n = 3
+    else:
+        n = numb
+    maxd = {}
+    maxn=[]
+    
+    for x in d:
+        if len(maxd)<n:
+            maxd[x] = d[x]
+            maxn.append(d[x])
+            maxn.sort()
+        else:
+            if d[x] > maxn[0]:
+                for y in maxd:
+                    if maxd[y] == maxn[0]:
+                        del maxd[y]
+                        break
+                maxd[x] = d[x]
+                maxn[0] =d[x]
+                maxn.sort()
+    print maxn
+    return maxd
+                
 
-print search("")
+
+print findhigh(search(question))
 
 
 
@@ -55,6 +84,16 @@ print soup.get_text()
 g.googlesearch("Question", num = 10, start =0, stop = 10)
 utils [x for x in g]
 print utils
+
+Results:
+//nameFinder runs alot faster than namere.py//
+probably b/c namere.py looks for all kinds of different names like those including middle names and stuff
+1)namere.py
+{u'April': 279, u'Barack Obama': 261, u'January': 461}
+
+2)nameFinder.py
+{u'Barack Obama': 263, u'Ann Dunham': 52, u'Michelle Obama': 120}
+
 
 
 '''
