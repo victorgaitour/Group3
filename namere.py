@@ -18,7 +18,7 @@ def lastname(string):
     s = string.split(" ")
     return s[-1]
 
-names= opentestfile("names.csv");
+names= opentestfile("namefinder/names.csv");
 names= names.split()
 
 def findname(x):
@@ -26,11 +26,11 @@ def findname(x):
     matches = re.findall("[A-Z][a-z]+",x)
 
     #matches  ('firstname', 'lastname')
-    flmatches = re.findall("([A-Z][a-z]+[-]?[A-Z]?[a-z]+[']?[s]?)[\s]([A-Z][a-z]+[-]?[A-Z]?[a-z]+)[']?[s]?[\s][a-z]+",x)
+    flmatches = re.findall("([A-Z][a-z]+[-]?[A-Z]?[a-z]+[']?[s]?)[\s]([A-Z][a-z]+[-]?[A-Z]?[a-z]*)",x)
     #matches with middle initials ('firstname','MI','lastname')
-    mimatches = re.findall("([A-Z][a-z]+[-]?[A-Z]?[a-z]+[']?[s]?)[\s]([A-Z][\.])[\s]([A-Z][a-z]+[-]?[A-Z]?[a-z]+)[']?[s]?",x)    
+    mimatches = re.findall("([A-Z][a-z]+[-]?[A-Z]?[a-z]+[']?[s]?)[\s]([A-Z][\.])[\s]([A-Z][a-z]+[-]?[A-Z]?[a-z]*)",x)    
     #matches with middle name
-    midmatches = re.findall("([A-Z][a-z]+[-]?[A-Z]?[a-z]+[']?[s]?)[\s]([A-Z][a-z]+)[\s]([A-Z][a-z]+[-]?[A-Z]?[a-z]+)[']?[s]?",x)
+    midmatches = re.findall("([A-Z][a-z]+[-]?[A-Z]?[a-z]+[']?[s]?)[\s]([A-Z][a-z]+)[\s]([A-Z][a-z]+[-]?[A-Z]?[a-z]*)",x)
     
     #matches = re.findall("[\s][a-z]+[\s]([A-Z][a-z|-]+[A-Z]?[a-z]+)[!\.,;\?][\s]",x) #gets all single capitalized words before a punctuation mark and a space -> but doesnt get words preceded by quotess
 
@@ -62,19 +62,19 @@ def findname(x):
 
     allmatches = [FLmatches,MImatches,MIDmatches]
     for listm in allmatches:
-        dictmatches(listm,numbnames)
+        numbnames =dictmatches(listm,numbnames)
     return numbnames   
    
 #adds elements in list to dict while balancing dict so eliminated repeated names from the dictionary
 def dictmatches(L,D):
     for name in L:
-        if name in D:
+        if name in D.keys():
             D[name] +=1
         else:
             D[name] = 1
         firstn = firstname(name)
         #checks to see if firstname of the name inputted is already in the dictionary; if so, subtracts it from the dictionary (b/c there would be one extra name included in the dictionary)
-        if firstn in D:  
+        if firstn in D.keys():  
             D[firstn] -= 1
             if D[firstn] ==0:
                 del D[firstn]
@@ -86,18 +86,19 @@ def dictmatches(L,D):
                  D[lastn] -= 1
                  if D[lastn] ==0:
                      del D[lastn]
-            break
         except:
-            try:
-                #checks to see if middlename is a valid firstname but already in the dictionary; if so, subtracts it from the dictionary (b/c there would be one extra name included in the dictionary)
-                midn = midname(name)
-                if midn in D and midn in names:  
-                    D[midn] -= 1
-                    if D[midn] ==0:
-                        del D[midn]
-                break
-            except:
-                return D
+            break
+
+        try:
+            #checks to see if middlename is a valid firstname but already in the dictionary; if so, subtracts it from the dictionary (b/c there would be one extra name included in the dictionary)
+            midn = midname(name)
+            if midn in D.keys() and midn in names:  
+                D[midn] -= 1
+                if D[midn] ==0:
+                    del D[midn]
+        except:
+            break
+
     return D
     
 
