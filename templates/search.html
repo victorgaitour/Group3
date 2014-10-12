@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<p>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+ <h2> You searched for "{{searchstring}}" </h2>
+ <h3> What we found was : </h3>
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Repetitions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      {% for key,value in results.iteritems() %}
+	<tr>
+            <td>{{key}}</th>
+            <td>{{value}}</th>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+
+
+
