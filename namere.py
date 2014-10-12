@@ -68,13 +68,13 @@ def findname(x):
 #adds elements in list to dict while balancing dict so eliminated repeated names from the dictionary
 def dictmatches(L,D):
     for name in L:
-        if name in D.keys():
+        if name in D:
             D[name] +=1
         else:
             D[name] = 1
         firstn = firstname(name)
         #checks to see if firstname of the name inputted is already in the dictionary; if so, subtracts it from the dictionary (b/c there would be one extra name included in the dictionary)
-        if firstn in D.keys():  
+        if firstn in D:  
             D[firstn] -= 1
             if D[firstn] ==0:
                 del D[firstn]
@@ -92,7 +92,7 @@ def dictmatches(L,D):
         try:
             #checks to see if middlename is a valid firstname but already in the dictionary; if so, subtracts it from the dictionary (b/c there would be one extra name included in the dictionary)
             midn = midname(name)
-            if midn in D.keys() and midn in names:  
+            if midn in D and midn in names:  
                 D[midn] -= 1
                 if D[midn] ==0:
                     del D[midn]
