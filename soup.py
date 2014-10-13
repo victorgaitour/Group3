@@ -6,6 +6,7 @@ from nameFinder import get_potential_names
 from nameFinder import check_names
 import urllib2
 from dateFinder import find_dates
+import operator
 
 '''
 How to use this file:
@@ -91,7 +92,8 @@ def search(question):
 
         except Exception, error:
             pass
-
+    d = sorted(d.items(), key=operator.itemgetter(0), reverse=True)
+    d = dict(d)
     return [d,count]
 
            
