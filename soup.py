@@ -41,7 +41,7 @@ topresults= findhigh(x[0])
 question = "Who is the president of the United States today?"
 dquestion = "When was Martin Luther King Jr. born?"
 #returns a dictionary with the search results
-def search(question,):
+def search(question):
     g =  google.search(question, num = 10, start = 0, stop = 10, pause=3.0)
     utils = [w for w in g]
     
