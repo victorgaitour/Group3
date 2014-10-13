@@ -105,4 +105,3 @@ def find_dates(text):
 
 
 
-print( combine_data( check_dates1(get_potential_dates1(txt)), check_dates2(get_potential_dates2(txt))) )
