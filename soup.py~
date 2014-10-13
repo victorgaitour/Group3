@@ -5,7 +5,6 @@ from namere import findname
 from nameFinder import get_potential_names
 from nameFinder import check_names
 import urllib2
-import dateFinder
 
 question = "Who is the president of the United States today?"
 
@@ -18,11 +17,8 @@ def search(question):
     searchtype = question.split(" ")[0]
     if searchtype == "Who" or searchtype == "":
         name = True
-    else if searchtype == "When":
-        date = True
     else:
         name = False
-        date = False
         
     for x in utils:
     #run beautiful soup to find names
@@ -42,8 +38,6 @@ def search(question):
                     #find highest number of names
                    # dhigh=findhigh(d);
                     #return addition of that 
-            else if date:
-                d = find_dates( y )
             else: #when regex
                 #do when regex here
 

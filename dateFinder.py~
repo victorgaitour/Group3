@@ -95,12 +95,7 @@ def combine_data( checked1, checked2):
     return dates
 
     
-def find_dates(text):
-    dates1 = get_potential_dates1(text)
-    dates2 = get_potential_dates2(text)
-    dates1c = check_dates1( dates1 )
-    dates2c = check_dates2( dates2 )
-    return combine_data( dates1c, dates2c )
+
         
 
 
