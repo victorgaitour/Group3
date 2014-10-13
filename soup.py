@@ -109,16 +109,7 @@ print findhigh(search(dquestion))
 
 
 '''
-Soup functions/google functions
-print soup.prettify()
-
-print soup.get_text()
-
-g.googlesearch("Question", num = 10, start =0, stop = 10)
-utils [x for x in g]
-print utils
-
-Results: (who testing with:
+Name Results: (who testing with:
 question = "Who is the president of the United States today?"
 )
 //nameFinder runs alot faster than namere.py//
