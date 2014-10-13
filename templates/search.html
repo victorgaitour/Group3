@@ -10,7 +10,7 @@ media="screen" />
 <div class="splash-container">
   <div class="splash">
  <h2> You searched for: <br>"{{searchstring}}" </h1>
- <h3> What we found was : </h3>
+ <h3> Our answer: {{results.keys()[0]}}</h3>
 <p> </p>
 <h1> 
 <table class="pure-table">
@@ -30,7 +30,7 @@ media="screen" />
       {% endfor %}
     </tbody>
 </table>
-
+</h1>
 <br>
 
     <form class="pure-form" method="POST">
