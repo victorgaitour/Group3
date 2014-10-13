@@ -92,8 +92,8 @@ def search(question):
 
         except Exception, error:
             pass
-    d = sorted(d.items(), key=operator.itemgetter(0), reverse=True)
-    d = dict(d)
+    d = sorted(d.items(), key=operator.itemgetter(1), reverse=True)
+
     return [d,count]
 
            
