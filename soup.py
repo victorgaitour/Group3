@@ -9,21 +9,39 @@ from dateFinder import find_dates
 
 '''
 How to use this file:
-
-run:
-findhigh(search( *your_question_as_string*))
------>this returns the top 3 results of the questions from google
-findhigh(search( *your_question_as_string*) ,    n    )
------>this returns the top n results of the questions from google
 ->only works for when and who questions
 ->you need to import google and bsoup in your env for this to work
+
+run:
+findhigh(search( *your_question_as_string*)[0])
+----->this returns the top 3 results of the questions from google
+
+findhigh(search( *your_question_as_string*)[0] ,    n    )
+----->this returns the top n results of the questions from google
+
+
+
+to find the total number of names on the top 10 links:
+search(*your_question_as_string*)[1]
+
+
+
+to run more efficiently
+
+x = search(*your_question_as_string*)
+total= x[1]
+topresults= findhigh(x[0])
+
+
+
+
 '''
 
 
 question = "Who is the president of the United States today?"
 dquestion = "When was Martin Luther King Jr. born?"
 #returns a dictionary with the search results
-def search(question):
+def search(question,):
     g =  google.search(question, num = 10, start = 0, stop = 10, pause=3.0)
     utils = [w for w in g]
     
@@ -39,7 +57,7 @@ def search(question):
     else:
         name = False
         date = False
-        
+    count = 0
     for x in utils:
     #run beautiful soup to find names
         try:
@@ -51,6 +69,7 @@ def search(question):
                 names = check_names(get_potential_names(y))
                 #names = findname(y)
                 for k in names.keys():
+                    count = count + names[k]
                     if k not in d.keys():
                         d[k] = names[k]
                     else:
@@ -61,6 +80,7 @@ def search(question):
             elif date:
                 dates = find_dates( y )
                 for k in dates.keys():
+                    count = count + dates[k]
                     if k not in d.keys():
                         d[k] = dates[k]
                     else:
@@ -71,12 +91,12 @@ def search(question):
 
         except Exception, error:
             pass
-            
-    return d
+
+    return [d,count]
+
            
 #finds the highest counts in a dictionary
 def findhigh(d,numb = None):
-    print "Finding highest results"
     if d == {}:
         return None
     if numb == None:
@@ -101,12 +121,21 @@ def findhigh(d,numb = None):
                 maxn[0] =d[x]
                 maxn.sort()
     return maxd
-                
-
-print findhigh(search(question))
-print findhigh(search(dquestion))
 
 
+'''
+x = search(question)
+print x
+print findhigh(x[0]) #first element is the dictionary
+print x[1] #second element is the count
+y = search(dquestion)
+print findhigh(y[0])
+print y[1]
+
+
+print findhigh(search(dquestion)[0])
+
+'''
 
 '''
 Name Results: (who testing with:
