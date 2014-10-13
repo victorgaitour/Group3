@@ -7,6 +7,18 @@ from nameFinder import check_names
 import urllib2
 from dateFinder import find_dates
 
+'''
+How to use this file:
+
+run:
+findhigh(search( *your_question_as_string*))
+----->this returns the top 3 results of the questions from google
+findhigh(search( *your_question_as_string*) ,    n    )
+----->this returns the top n results of the questions from google
+->only works for when and who questions
+->you need to import google and bsoup in your env for this to work
+'''
+
 
 question = "Who is the president of the United States today?"
 dquestion = "When was Martin Luther King Jr. born?"
@@ -23,6 +35,7 @@ def search(question):
         name = True
     elif searchtype.lower() == "when":
         date = True
+
     else:
         name = False
         date = False
