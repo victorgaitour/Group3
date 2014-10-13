@@ -20,9 +20,11 @@ def index():
                                searchstring=searchstring)
     else:
         return render_template("index.html")
+
 @app.route("/search",methods=["GET","POST"])
 def search():
     return index()
+    
 if __name__=="__main__":
     app.debug=True
     app.run()
