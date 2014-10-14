@@ -8,36 +8,6 @@ import urllib2
 from dateFinder import find_dates
 import operator
 
-'''
-How to use this file:
-->only works for when and who questions
-->you need to import google and bsoup in your env for this to work
-
-run:
-findhigh(search( *your_question_as_string*)[0])
------>this returns the top 3 results of the questions from google
-
-findhigh(search( *your_question_as_string*)[0] ,    n    )
------>this returns the top n results of the questions from google
-
-
-
-to find the total number of names on the top 10 links:
-search(*your_question_as_string*)[1]
-
-
-
-to run more efficiently
-
-x = search(*your_question_as_string*)
-total= x[1]
-topresults= findhigh(x[0])
-
-
-
-
-'''
-
 
 question = "Who is the president of the United States today?"
 dquestion = "When was Martin Luther King Jr. born?"
@@ -139,6 +109,7 @@ print findhigh(search(dquestion)[0])
 
 '''
 
+
 '''
 Name Results: (who testing with:
 question = "Who is the president of the United States today?"
@@ -150,7 +121,4 @@ probably b/c namere.py looks for all kinds of different names like those includi
 
 2)nameFinder.py
 {u'Barack Obama': 263, u'Ann Dunham': 52, u'Michelle Obama': 120}
-
-
-
 '''
