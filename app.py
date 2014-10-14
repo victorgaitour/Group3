@@ -15,13 +15,19 @@ def index():
         # sampleresults["Norman Osborne"]=3
         # sampleresults["Mary Jane"]=1
         results=soup.search(searchstring)[0]
-        if len(results) < 5:
-            newresults = results
+        if results == None:
+            newresults = "SORRY, the string you inputted was not a who or when query. GO BACK and Try again."
+            nresults = None
+        elif len(results) < 5:
+            newresults = results[0][0]
+            nresults = results
         else:
-            newresults = [results[x] for x in range(5)]
+            newresults = [results[x] for x in range(5)][0][0]
+            nresults = [results[x] for x in range(5)]
         # print results
         return render_template("search.html",results=newresults,
-                               searchstring=searchstring)
+                               searchstring=searchstring,
+                               nresults = nresults)
     else:
         return render_template("index.html")
 

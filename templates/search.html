@@ -1,8 +1,7 @@
 <!doctype html>
 <html lang="en">
 <p>
- 
-        
+       
 <link rel="stylesheet"
     href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
 <link rel="stylesheet" href="/static/marketing.css" type="text/css"
@@ -10,9 +9,10 @@ media="screen" />
 <div class="splash-container">
   <div class="splash">
  <h2> You searched for: <br>"{{searchstring}}" </h1>
- <h3> Our answer: {{results[0][0]}}</h3>
+ <h3> Our answer: {{results}}</h3>
 <p> </p>
-<h1> 
+<h1>
+<center>
 <table class="pure-table">
     <thead>
         <tr>
@@ -22,14 +22,20 @@ media="screen" />
     </thead>
 
     <tbody>
-      {% for tuple in results %}
-	<tr>
+      {% if nresults == None %}
+            {{nresults}}
+            <br><tr><td></td><td></td><tr><br>
+      {% else %}
+      {% for tuple in nresults %}
+            <tr>
             <td>{{tuple[0]}}</th>
             <td>{{tuple[1]}}</th>
         </tr>
       {% endfor %}
+      {% endif %}
     </tbody>
 </table>
+</center>
 </h1>
 <br>
 
@@ -39,3 +45,4 @@ media="screen" />
 
 </div>
 </div>
+<br>

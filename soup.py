@@ -13,21 +13,21 @@ question = "Who is the president of the United States today?"
 dquestion = "When was Martin Luther King Jr. born?"
 #returns a dictionary with the search results
 def search(question):
+    name = False
+    date = False
+
+    searchtype = question.split(" ")[0]
+    if searchtype.lower() == "who":
+        name = True
+    elif searchtype.lower() == "when":
+        date = True
+    else:
+        return [None,0]
+
     g =  google.search(question, num = 10, start = 0, stop = 10, pause=3.0)
     utils = [w for w in g]
     
     d = {}
-    name = False
-    date = False
-    searchtype = question.split(" ")[0]
-    if searchtype.lower() == "who" or searchtype == "":
-        name = True
-    elif searchtype.lower() == "when":
-        date = True
-
-    else:
-        name = False
-        date = False
     count = 0
     for x in utils:
     #run beautiful soup to find names
