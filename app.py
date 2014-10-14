@@ -15,7 +15,10 @@ def index():
         # sampleresults["Norman Osborne"]=3
         # sampleresults["Mary Jane"]=1
         results=soup.search(searchstring)[0]
-        newresults = [results[x] for x in range(5)]
+        if len(results) < 5:
+            newresults = results
+        else:
+            newresults = [results[x] for x in range(5)]
         # print results
         return render_template("search.html",results=newresults,
                                searchstring=searchstring)
