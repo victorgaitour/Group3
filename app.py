@@ -14,9 +14,10 @@ def index():
         # sampleresults["Peter Parker"]=6
         # sampleresults["Norman Osborne"]=3
         # sampleresults["Mary Jane"]=1
-        results=soup.findhigh(soup.search(searchstring)[0])
+        results=soup.search(searchstring)[0]
+        newresults = [results[x] for x in range(5)]
         # print results
-        return render_template("search.html",results=results,
+        return render_template("search.html",results=newresults,
                                searchstring=searchstring)
     else:
         return render_template("index.html")

@@ -10,7 +10,7 @@ media="screen" />
 <div class="splash-container">
   <div class="splash">
  <h2> You searched for: <br>"{{searchstring}}" </h1>
- <h3> Our answer: {{results.keys()[0]}}</h3>
+ <h3> Our answer: {{results[0][0]}}</h3>
 <p> </p>
 <h1> 
 <table class="pure-table">
@@ -22,10 +22,10 @@ media="screen" />
     </thead>
 
     <tbody>
-      {% for key,value in results.iteritems() %}
+      {% for tuple in results %}
 	<tr>
-            <td>{{key}}</th>
-            <td>{{value}}</th>
+            <td>{{tuple[0]}}</th>
+            <td>{{tuple[1]}}</th>
         </tr>
       {% endfor %}
     </tbody>
